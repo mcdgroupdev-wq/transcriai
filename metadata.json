@@ -1,0 +1,7 @@
+{
+  "name": "TranscriAI",
+  "description": "AI-powered transcription and summarization for videos and audio files from links or uploads.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
