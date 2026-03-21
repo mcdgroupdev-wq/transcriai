@@ -427,23 +427,24 @@ export default function App() {
         contents: {
           parts: [
             { inlineData: { data: base64Data, mimeType: mimeType } },
-            { text: "Analiza este archivo multimedia y genera una transcripción completa y detallada. Si es un video, describe también los elementos visuales clave si son relevantes para el contexto. Estructura el texto con títulos y párrafos claros." },
+            { text: "Analiza este archivo multimedia y genera una transcripción profesional, estructurada y completa. Incluye un resumen ejecutivo al inicio." },
           ],
         },
         config: {
-          systemInstruction: `Eres TranscriAI, un experto en análisis multimedia y transcripción profesional.
+          systemInstruction: `Eres TranscriAI, la IA líder en transcripción profesional y análisis de contenido multimedia.
           
-TU MISIÓN:
-1. Transcribir con absoluta precisión cada palabra hablada.
-2. Identificar diferentes hablantes si es posible (Hablante 1, Hablante 2, etc.).
-3. Limpiar el lenguaje: elimina muletillas (eh, mmm, ¿sabes?), repeticiones innecesarias y ruidos de fondo.
-4. Si es un video, incluye notas breves entre corchetes [ ] sobre cambios visuales importantes o demostraciones en pantalla.
-5. Formatear la salida usando Markdown profesional (negritas para énfasis, listas para puntos clave).
+TU MISIÓN ES ENTREGAR UN DOCUMENTO IMPECABLE:
+1. **Resumen Ejecutivo:** Comienza con un breve resumen (3-5 líneas) de lo que trata el audio/video.
+2. **Transcripción Estructurada:** Organiza el contenido por temas o secciones usando títulos de Markdown (##, ###).
+3. **Identificación de Hablantes:** Usa negritas para los nombres (ej: **Entrevistador:**, **Invitado:**).
+4. **Marcas de Tiempo:** Si es posible, incluye marcas de tiempo aproximadas [00:00] al inicio de cada sección importante.
+5. **Limpieza Profesional:** Elimina muletillas, tartamudeos y ruidos sin perder el sentido original. Corrige la puntuación para que sea fluida.
+6. **Notas de Contexto:** Para videos, describe acciones clave entre corchetes [ej: El presentador señala una gráfica de ventas].
 
-REGLAS CRÍTICAS:
-- Nunca digas "No puedo ver el video" o "No tengo acceso". Tienes el archivo directamente, procésalo.
-- Si el audio es de baja calidad, haz tu mejor esfuerzo y marca las partes ininteligibles como [inaudible].
-- El tono debe ser formal y estructurado.`,
+REGLAS DE ORO:
+- Tono: Formal, ejecutivo y preciso.
+- Formato: Usa Markdown rico (listas, negritas, tablas si hay datos numéricos).
+- Idioma: Responde siempre en el idioma en el que se habla en el archivo, a menos que se pida traducción.`,
         },
       });
       if (!response.text) throw new Error("No se pudo obtener texto del archivo.");
@@ -468,21 +469,22 @@ REGLAS CRÍTICAS:
       console.log("Enviando a Gemini con URL Context y Google Search...");
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
-        contents: { parts: [{ text: `Analiza este enlace: ${link}. Tu objetivo es obtener la transcripción completa o un resumen extremadamente detallado del contenido del video/audio. Utiliza el contenido del enlace y Google Search para encontrar la información si no puedes acceder directamente.` }] },
+        contents: { parts: [{ text: `Analiza este enlace: ${link}. Genera un informe profesional que incluya la transcripción (o análisis minuto a minuto) y un resumen ejecutivo.` }] },
         config: {
           tools: [{ urlContext: {} }, { googleSearch: {} }],
-          systemInstruction: `Eres TranscriAI, un asistente de inteligencia artificial experto en investigación y transcripción de contenido web.
+          systemInstruction: `Eres TranscriAI, un consultor experto en análisis de medios digitales y transcripción de alta fidelidad.
 
-TU TAREA:
-1. Acceder al contenido del enlace proporcionado.
-2. Si es un video de YouTube, Vimeo u otra plataforma, busca la transcripción oficial o genera una basada en el análisis del contenido disponible en la web.
-3. Si no encuentras una transcripción palabra por palabra, genera un "Análisis de Contenido Detallado" que cubra minuto a minuto lo que sucede en el video.
-4. Estructura la información con: Título del video, Temática principal, Resumen detallado y Puntos clave.
+TU OBJETIVO ES CREAR UN INFORME PROFESIONAL:
+1. **Ficha Técnica:** Título, Canal/Autor, Duración (si está disponible) y Fecha.
+2. **Resumen Ejecutivo:** Un párrafo potente que resuma el valor principal del contenido.
+3. **Contenido Estructurado:** Si no puedes obtener la transcripción literal, crea un desglose detallado por secciones de tiempo (ej: [00:00 - 05:00] Introducción y Contexto).
+4. **Puntos Clave:** Una lista de "Takeaways" o conclusiones principales.
+5. **Análisis de Valor:** ¿A quién le sirve este contenido? ¿Cuál es el mensaje central?
 
 REGLAS:
-- Nunca respondas con "No puedo acceder". Si el enlace falla, usa Google Search para buscar "transcripción de [título del video]" o información sobre su contenido.
-- Entrega siempre un resultado útil y extenso.
-- Usa Markdown para una presentación impecable.`,
+- Usa Markdown avanzado: Títulos, separadores (---), negritas y listas.
+- Si el enlace falla, agota todas las posibilidades usando Google Search para encontrar el guion, transcripción o artículos relacionados.
+- El texto debe ser limpio, sin errores gramaticales y con un tono de experto.`,
         },
       });
       if (!response.text) throw new Error("No se pudo procesar el enlace.");
@@ -502,16 +504,22 @@ REGLAS:
       const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
-        contents: { parts: [{ text: `Genera un resumen inteligente, estructurado y profesional de la siguiente transcripción: ${result.text}` }] },
+        contents: { parts: [{ text: `Genera un resumen ejecutivo, estructurado y profesional de la siguiente transcripción: ${result.text}` }] },
         config: {
-          systemInstruction: `Eres un experto en síntesis de información. Tu objetivo es extraer los puntos más importantes de la transcripción y presentarlos de forma clara. Usa viñetas, negritas y secciones bien definidas.`,
+          systemInstruction: `Eres un experto en síntesis de información corporativa. 
+          
+TU OBJETIVO:
+1. Crear un resumen de alto nivel que capture la esencia del contenido.
+2. Usar una estructura clara: Contexto, Puntos Clave, Conclusiones y Próximos Pasos (si aplica).
+3. Mantener un tono profesional, eliminando cualquier redundancia.
+4. Usar Markdown avanzado (negritas, listas con viñetas, separadores).`,
         },
       });
       setResult(prev => prev ? { ...prev, summary: response.text } : null);
       setState('idle');
     } catch (err: any) {
       setError("Error al generar el resumen.");
-      setState('error');
+      setState('idle');
     }
   };
 

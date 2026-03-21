@@ -1,1 +1,45 @@
 @import "tailwindcss";
+
+@layer base {
+  body {
+    @apply antialiased text-slate-900;
+  }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+}
+
+/* Prose Professional Overrides */
+.prose {
+  @apply max-w-none;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  @apply font-bold tracking-tight text-slate-900;
+}
+
+.prose p {
+  @apply leading-relaxed text-slate-600;
+}
+
+.prose strong {
+  @apply font-semibold text-slate-900;
+}
+
+.prose ul, .prose ol {
+  @apply my-6;
+}
+
+.prose li {
+  @apply my-2;
+}
