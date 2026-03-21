@@ -261,6 +261,106 @@ Para un periodista, transcribir una entrevista de una hora puede tomar hasta 4 h
 
 Ahorrar tiempo en la transcripción te permite dedicar más energía a la investigación y a la redacción de la historia.
     `
+  },
+  {
+    id: '11',
+    title: 'Transcripción de podcasts: Lleva tu contenido a más personas',
+    excerpt: '¿Tienes un podcast? Aprende cómo las transcripciones pueden ayudarte a llegar a una audiencia global.',
+    date: '25 de Febrero, 2026',
+    category: 'Podcasting',
+    image: 'https://picsum.photos/seed/podcast/800/400',
+    content: `
+# Transcripción de podcasts: Lleva tu contenido a más personas
+
+El podcasting es un formato increíble, pero tiene una barrera: no es fácil de buscar ni de consumir para personas con problemas auditivos.
+
+## Por qué transcribir tu podcast
+- **Accesibilidad:** Haz que tu contenido sea inclusivo.
+- **SEO para audio:** Google indexará el texto de tu podcast, atrayendo tráfico orgánico.
+- **Notas del episodio:** Usa la transcripción para crear notas detalladas y resúmenes.
+
+Con TranscriAI, puedes procesar tus episodios en segundos y mejorar el alcance de tu marca.
+    `
+  },
+  {
+    id: '12',
+    title: 'Cómo transcribir reuniones de Zoom y Microsoft Teams',
+    excerpt: 'No pierdas ni un detalle de tus reuniones de trabajo. La guía definitiva para la productividad corporativa.',
+    date: '22 de Febrero, 2026',
+    category: 'Productividad',
+    image: 'https://picsum.photos/seed/meetings/800/400',
+    content: `
+# Cómo transcribir reuniones de Zoom y Microsoft Teams
+
+Las reuniones son necesarias, pero a veces se pierde información importante. La transcripción automática es tu mejor aliada.
+
+## Pasos para una reunión productiva
+1. **Graba la sesión:** Asegúrate de que todos los participantes estén de acuerdo.
+2. **Sube el archivo:** Usa TranscriAI para obtener el texto de la reunión.
+3. **Genera un resumen:** Extrae los acuerdos y tareas pendientes automáticamente.
+
+Tener un registro escrito de tus reuniones mejora la transparencia y la ejecución de proyectos.
+    `
+  },
+  {
+    id: '13',
+    title: 'Seguridad y privacidad en la transcripción por IA',
+    excerpt: '¿Es seguro subir tus audios a la nube? Analizamos cómo protegemos tus datos en TranscriAI.',
+    date: '20 de Febrero, 2026',
+    category: 'Seguridad',
+    image: 'https://picsum.photos/seed/security/800/400',
+    content: `
+# Seguridad y privacidad en la transcripción por IA
+
+La privacidad es nuestra prioridad. Cuando subes un archivo a TranscriAI, nos aseguramos de que tus datos estén protegidos.
+
+## Nuestras medidas de seguridad
+- **Encriptación:** Los datos se transmiten de forma segura.
+- **No almacenamiento:** No guardamos tus archivos más tiempo del necesario para el procesamiento.
+- **IA Ética:** Utilizamos modelos de Google que cumplen con los más altos estándares de seguridad.
+
+Puedes confiar en que tu información confidencial se maneja con el máximo cuidado profesional.
+    `
+  },
+  {
+    id: '14',
+    title: 'Cómo transcribir videos de Instagram y TikTok',
+    excerpt: 'Aprende a extraer el texto de los videos cortos más populares para reutilizar el contenido.',
+    date: '18 de Febrero, 2026',
+    category: 'Redes Sociales',
+    image: 'https://picsum.photos/seed/social/800/400',
+    content: `
+# Cómo transcribir videos de Instagram y TikTok
+
+Los videos cortos dominan las redes sociales, pero a veces necesitas el texto para un subtitulado manual o para un post en otra plataforma.
+
+## Proceso de transcripción
+1. **Descarga el video:** Usa herramientas externas para obtener el archivo MP4.
+2. **Sube a TranscriAI:** Procesa el audio del video corto.
+3. **Adapta el contenido:** Usa el texto para crear hilos de Twitter o descripciones de YouTube.
+
+Reutilizar contenido es la clave para crecer en múltiples plataformas sin trabajar el doble.
+    `
+  },
+  {
+    id: '15',
+    title: 'Guía completa de formatos de audio para transcripción',
+    excerpt: 'MP3, WAV, AAC... ¿Cuál es el mejor formato para obtener resultados precisos?',
+    date: '15 de Febrero, 2026',
+    category: 'Tecnología',
+    image: 'https://picsum.photos/seed/formats/800/400',
+    content: `
+# Guía completa de formatos de audio para transcripción
+
+No todos los archivos de audio son iguales. El formato que elijas puede afectar drásticamente la precisión de la IA.
+
+## Formatos recomendados
+- **WAV:** Sin compresión, ideal para máxima precisión.
+- **MP3 (320kbps):** Buen equilibrio entre tamaño y calidad.
+- **FLAC:** Compresión sin pérdida, excelente para archivos largos.
+
+Evita formatos muy comprimidos o de baja calidad, ya que el ruido digital puede confundir a los algoritmos de transcripción.
+    `
   }
 ];
 
@@ -286,8 +386,8 @@ export default function App() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      if (selectedFile.size > 20 * 1024 * 1024) {
-        setError("El archivo es demasiado grande. El límite para esta demo es 20MB.");
+      if (selectedFile.size > 50 * 1024 * 1024) {
+        setError("El archivo es demasiado grande. El límite para esta demo es 50MB.");
         return;
       }
       setFile(selectedFile);
@@ -321,17 +421,29 @@ export default function App() {
       const ai = new GoogleGenAI({ apiKey });
       const base64Data = await fileToBase64(file);
       const mimeType = file.type || 'application/octet-stream';
+      console.log("Enviando a Gemini (modelo: gemini-3-flash-preview)...");
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: {
           parts: [
             { inlineData: { data: base64Data, mimeType: mimeType } },
-            { text: "Transcribe el contenido de este archivo de audio/video de forma clara y profesional." },
+            { text: "Analiza este archivo multimedia y genera una transcripción completa y detallada. Si es un video, describe también los elementos visuales clave si son relevantes para el contexto. Estructura el texto con títulos y párrafos claros." },
           ],
         },
         config: {
-          systemInstruction: `Eres TranscriAI, un asistente especializado en transcribir y resumir videos y audios.
-IMPORTANTE: Nunca digas que no puedes acceder al video. Tu única función es procesar el contenido que el usuario te envía.`,
+          systemInstruction: `Eres TranscriAI, un experto en análisis multimedia y transcripción profesional.
+          
+TU MISIÓN:
+1. Transcribir con absoluta precisión cada palabra hablada.
+2. Identificar diferentes hablantes si es posible (Hablante 1, Hablante 2, etc.).
+3. Limpiar el lenguaje: elimina muletillas (eh, mmm, ¿sabes?), repeticiones innecesarias y ruidos de fondo.
+4. Si es un video, incluye notas breves entre corchetes [ ] sobre cambios visuales importantes o demostraciones en pantalla.
+5. Formatear la salida usando Markdown profesional (negritas para énfasis, listas para puntos clave).
+
+REGLAS CRÍTICAS:
+- Nunca digas "No puedo ver el video" o "No tengo acceso". Tienes el archivo directamente, procésalo.
+- Si el audio es de baja calidad, haz tu mejor esfuerzo y marca las partes ininteligibles como [inaudible].
+- El tono debe ser formal y estructurado.`,
         },
       });
       if (!response.text) throw new Error("No se pudo obtener texto del archivo.");
@@ -353,12 +465,24 @@ IMPORTANTE: Nunca digas que no puedes acceder al video. Tu única función es pr
         throw new Error("API Key de Gemini no encontrada. Por favor, ve a 'Settings > Secrets', añade una clave llamada GEMINI_KEY con tu valor, pulsa 'Save' y luego MUY IMPORTANTE: pulsa el botón 'Apply changes' para reiniciar el servidor.");
       }
       const ai = new GoogleGenAI({ apiKey });
+      console.log("Enviando a Gemini con URL Context y Google Search...");
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
-        contents: { parts: [{ text: `Procesa el contenido de este enlace y entrega la transcripción o información detallada: ${link}` }] },
+        contents: { parts: [{ text: `Analiza este enlace: ${link}. Tu objetivo es obtener la transcripción completa o un resumen extremadamente detallado del contenido del video/audio. Utiliza el contenido del enlace y Google Search para encontrar la información si no puedes acceder directamente.` }] },
         config: {
-          tools: [{ googleSearch: {} }],
-          systemInstruction: `Eres TranscriAI, un asistente especializado en transcribir y resumir videos y audios.`,
+          tools: [{ urlContext: {} }, { googleSearch: {} }],
+          systemInstruction: `Eres TranscriAI, un asistente de inteligencia artificial experto en investigación y transcripción de contenido web.
+
+TU TAREA:
+1. Acceder al contenido del enlace proporcionado.
+2. Si es un video de YouTube, Vimeo u otra plataforma, busca la transcripción oficial o genera una basada en el análisis del contenido disponible en la web.
+3. Si no encuentras una transcripción palabra por palabra, genera un "Análisis de Contenido Detallado" que cubra minuto a minuto lo que sucede en el video.
+4. Estructura la información con: Título del video, Temática principal, Resumen detallado y Puntos clave.
+
+REGLAS:
+- Nunca respondas con "No puedo acceder". Si el enlace falla, usa Google Search para buscar "transcripción de [título del video]" o información sobre su contenido.
+- Entrega siempre un resultado útil y extenso.
+- Usa Markdown para una presentación impecable.`,
         },
       });
       if (!response.text) throw new Error("No se pudo procesar el enlace.");
@@ -378,7 +502,10 @@ IMPORTANTE: Nunca digas que no puedes acceder al video. Tu única función es pr
       const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
-        contents: { parts: [{ text: `Genera un resumen inteligente de la siguiente transcripción: ${result.text}` }] },
+        contents: { parts: [{ text: `Genera un resumen inteligente, estructurado y profesional de la siguiente transcripción: ${result.text}` }] },
+        config: {
+          systemInstruction: `Eres un experto en síntesis de información. Tu objetivo es extraer los puntos más importantes de la transcripción y presentarlos de forma clara. Usa viñetas, negritas y secciones bien definidas.`,
+        },
       });
       setResult(prev => prev ? { ...prev, summary: response.text } : null);
       setState('idle');
