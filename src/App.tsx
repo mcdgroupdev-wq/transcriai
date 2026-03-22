@@ -18,7 +18,9 @@ import {
   Trash2,
   ChevronRight,
   Volume2,
-  Video
+  Video,
+  Menu,
+  X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Markdown from 'react-markdown';
@@ -368,6 +370,7 @@ Evita formatos muy comprimidos o de baja calidad, ya que el ruido digital puede 
 
 export default function App() {
   const [view, setView] = useState<View>('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [state, setState] = useState<AppState>('idle');
   const [error, setError] = useState<string | null>(null);
@@ -866,22 +869,72 @@ TU OBJETIVO:
       {/* Header */}
       <header className="border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView('home')}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => { setView('home'); setIsMenuOpen(false); }}>
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
               <Sparkles className="text-white w-5 h-5" />
             </div>
             <h1 className="text-xl font-bold tracking-tight">TranscriAI</h1>
           </div>
+          
+          {/* Desktop Nav */}
           <nav className="hidden sm:flex items-center gap-6 text-sm font-medium text-gray-500">
             <button onClick={() => setView('home')} className={cn("hover:text-indigo-600 transition-colors", view === 'home' && "text-indigo-600")}>Herramienta</button>
             <button onClick={() => setView('blog')} className={cn("hover:text-indigo-600 transition-colors", (view === 'blog' || view === 'article') && "text-indigo-600")}>Blog</button>
             <button onClick={() => setView('about')} className={cn("hover:text-indigo-600 transition-colors", view === 'about' && "text-indigo-600")}>Sobre Nosotros</button>
             <button onClick={() => setView('contact')} className={cn("hover:text-indigo-600 transition-colors", view === 'contact' && "text-indigo-600")}>Contacto</button>
           </nav>
-          <div className="sm:hidden">
-            {/* Mobile menu could go here */}
-          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="sm:hidden p-2 text-gray-500 hover:text-indigo-600 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
+
+        {/* Mobile Nav Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="sm:hidden bg-white border-b border-gray-100 overflow-hidden"
+            >
+              <div className="flex flex-col p-6 gap-4 text-base font-medium text-gray-600">
+                <button 
+                  onClick={() => { setView('home'); setIsMenuOpen(false); }} 
+                  className={cn("flex items-center justify-between p-2 rounded-xl hover:bg-indigo-50 hover:text-indigo-600 transition-all", view === 'home' && "bg-indigo-50 text-indigo-600")}
+                >
+                  Herramienta
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => { setView('blog'); setIsMenuOpen(false); }} 
+                  className={cn("flex items-center justify-between p-2 rounded-xl hover:bg-indigo-50 hover:text-indigo-600 transition-all", (view === 'blog' || view === 'article') && "bg-indigo-50 text-indigo-600")}
+                >
+                  Blog
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => { setView('about'); setIsMenuOpen(false); }} 
+                  className={cn("flex items-center justify-between p-2 rounded-xl hover:bg-indigo-50 hover:text-indigo-600 transition-all", view === 'about' && "bg-indigo-50 text-indigo-600")}
+                >
+                  Sobre Nosotros
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => { setView('contact'); setIsMenuOpen(false); }} 
+                  className={cn("flex items-center justify-between p-2 rounded-xl hover:bg-indigo-50 hover:text-indigo-600 transition-all", view === 'contact' && "bg-indigo-50 text-indigo-600")}
+                >
+                  Contacto
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <main className="flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
