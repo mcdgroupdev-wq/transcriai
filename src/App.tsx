@@ -60,308 +60,334 @@ interface BlogPost {
 
 const BLOG_POSTS: BlogPost[] = [
   {
+    id: '0',
+    title: 'Nueva Función: Resúmenes Ejecutivos con IA en TranscriAI',
+    excerpt: 'Ahora no solo transcribimos tus audios, sino que extraemos la esencia con nuestra nueva herramienta de resúmenes inteligentes.',
+    date: '22 de Marzo, 2026',
+    category: 'Actualizaciones',
+    image: 'https://picsum.photos/seed/ai-summary/800/400',
+    content: `
+# Nueva Función: Resúmenes Ejecutivos con IA en TranscriAI
+
+Estamos emocionados de anunciar nuestra actualización más importante hasta la fecha: **Resúmenes Ejecutivos Inteligentes**.
+
+## ¿Qué hay de nuevo?
+Ya no tienes que leer transcripciones de 20 páginas para encontrar lo importante. Con un solo clic, TranscriAI analiza el texto y genera:
+1. **Contexto General:** De qué trata el contenido.
+2. **Puntos Clave:** Los hitos más importantes.
+3. **Conclusiones:** Qué acciones o decisiones se derivan del audio.
+
+## Cómo usarlo
+Simplemente sube tu archivo o pega un enlace de YouTube, espera a que la transcripción termine y presiona el botón **"Generar Resumen Inteligente"**. ¡Es así de fácil!
+    `
+  },
+  {
     id: '1',
-    title: 'Cómo transcribir videos de YouTube legalmente en 2026',
-    excerpt: 'Descubre las mejores prácticas y herramientas para obtener el texto de cualquier video de forma ética y rápida.',
+    title: 'Cómo transcribir videos de YouTube con TranscriAI en 2026',
+    excerpt: 'Aprende a usar nuestra herramienta para obtener el texto de cualquier video de YouTube de forma ética y ultra rápida.',
     date: '20 de Marzo, 2026',
     category: 'Guías',
-    image: 'https://picsum.photos/seed/youtube/800/400',
+    image: 'https://picsum.photos/seed/youtube-transcribe/800/400',
     content: `
-# Cómo transcribir videos de YouTube legalmente en 2026
+# Cómo transcribir videos de YouTube con TranscriAI en 2026
 
-La transcripción de videos se ha vuelto una herramienta esencial para creadores de contenido, estudiantes y profesionales. En esta guía, exploramos cómo TranscriAI utiliza inteligencia artificial avanzada para procesar contenido de manera legal.
+La transcripción de videos se ha vuelto una herramienta esencial. En TranscriAI, hemos optimizado el proceso para que solo tengas que pegar un enlace.
 
-## ¿Por qué transcribir videos?
-1. **Accesibilidad:** Permite que personas con discapacidad auditiva consuman tu contenido.
-2. **SEO:** Los buscadores como Google pueden indexar el texto, mejorando tu posicionamiento.
-3. **Reutilización:** Convierte un video en un artículo de blog o un hilo de Twitter en segundos.
+## Ventajas de usar TranscriAI para YouTube
+- **Sin instalaciones:** Todo ocurre en tu navegador.
+- **Contexto inteligente:** Nuestra IA entiende el tema del video para mejorar la precisión.
+- **Multilingüe:** Transcribimos videos en más de 50 idiomas automáticamente.
 
-## El proceso legal
-Es importante recordar que siempre debes tener los derechos o el permiso para utilizar el contenido que transcribes si planeas publicarlo. TranscriAI facilita el proceso técnico, pero la ética del contenido depende de ti.
+## Pasos para el éxito
+1. Copia la URL del video de YouTube.
+2. Pégala en la pestaña "Enlace" de TranscriAI.
+3. Deja que nuestra IA haga el trabajo pesado por ti.
     `
   },
   {
     id: '2',
-    title: 'IA vs Transcripción Manual: ¿Cuál elegir?',
-    excerpt: 'Analizamos los costos, la precisión y el tiempo de entrega entre los servicios humanos y la nueva era de la IA.',
+    title: 'TranscriAI vs Transcripción Manual: El fin de una era',
+    excerpt: '¿Por qué seguir pagando por hora cuando puedes tener resultados profesionales en segundos con TranscriAI?',
     date: '18 de Marzo, 2026',
     category: 'Tecnología',
-    image: 'https://picsum.photos/seed/tech/800/400',
+    image: 'https://picsum.photos/seed/ai-vs-human/800/400',
     content: `
-# IA vs Transcripción Manual: ¿Cuál elegir?
+# TranscriAI vs Transcripción Manual: El fin de una era
 
-Hace apenas unos años, la transcripción manual era la única opción si buscabas precisión. Hoy, modelos como Gemini 3 han cambiado las reglas del juego.
+La precisión de la IA ha alcanzado niveles humanos, pero con una fracción del costo y el tiempo.
 
-## Ventajas de la IA
-- **Velocidad:** Transcribe una hora de audio en menos de un minuto.
-- **Costo:** Fracción del precio de un transcriptor humano.
-- **Disponibilidad:** 24/7 sin esperas.
+## Comparativa Directa
+| Característica | Transcripción Manual | TranscriAI |
+| :--- | :--- | :--- |
+| **Tiempo (1h audio)** | 4-6 horas | < 1 minuto |
+| **Costo** | Alto ($$$) | Gratuito/Bajo ($) |
+| **Disponibilidad** | Horario laboral | 24/7 |
+| **Resumen IA** | No incluido | Sí, con un clic |
 
-## ¿Cuándo usar transcripción manual?
-Aún es preferible en casos de audio extremadamente ruidoso o con tecnicismos legales muy específicos que requieren una revisión humana final.
+En TranscriAI utilizamos **Gemini 3 Flash**, lo que nos permite ofrecer una velocidad sin precedentes sin sacrificar la calidad.
     `
   },
   {
     id: '3',
-    title: '5 Consejos para mejorar la calidad de tus audios',
-    excerpt: 'Si quieres transcripciones perfectas, necesitas un audio limpio. Aquí te enseñamos cómo lograrlo sin equipo profesional.',
+    title: '5 Consejos para transcripciones perfectas con TranscriAI',
+    excerpt: 'Si quieres resultados impecables, necesitas un audio limpio. Aprende cómo optimizar tus grabaciones para nuestra IA.',
     date: '15 de Marzo, 2026',
     category: 'Tips',
-    image: 'https://picsum.photos/seed/audio/800/400',
+    image: 'https://picsum.photos/seed/audio-tips/800/400',
     content: `
-# 5 Consejos para mejorar la calidad de tus audios
+# 5 Consejos para transcripciones perfectas con TranscriAI
 
-Para obtener una transcripción de alta calidad con IA, el audio original debe ser lo más claro posible. Aquí te dejamos 5 consejos prácticos:
+Para obtener una transcripción de alta calidad con nuestra IA, el audio original debe ser lo más claro posible. Aquí te dejamos 5 consejos prácticos:
 
 1. **Elimina el ruido de fondo:** Busca un lugar silencioso. Apaga ventiladores o aires acondicionados.
 2. **Usa un micrófono externo:** Incluso los auriculares de tu móvil suelen ser mejores que el micrófono integrado del portátil.
 3. **Mantén una distancia constante:** Habla a unos 15-20 cm del micrófono para evitar distorsiones.
-4. **Evita las interrupciones:** Si es una entrevista, intenta que las personas no hablen al mismo tiempo.
-5. **Formato de alta calidad:** Siempre que sea posible, graba en formatos sin pérdida como WAV o FLAC.
+4. **Evita las interrupciones:** TranscriAI identifica hablantes, pero es más preciso si no se pisan al hablar.
+5. **Formato de alta calidad:** Sube archivos en WAV o MP3 de alta tasa de bits para mejores resultados.
     `
   },
   {
     id: '4',
-    title: 'Cómo convertir audio a texto online gratis en 2026',
-    excerpt: '¿Necesitas pasar un audio a texto sin gastar dinero? Te mostramos las mejores opciones gratuitas y cómo aprovecharlas.',
+    title: 'TranscriAI: La mejor opción gratuita para audio a texto en 2026',
+    excerpt: '¿Necesitas pasar un audio a texto sin gastar dinero? Te mostramos por qué TranscriAI es la herramienta líder.',
     date: '12 de Marzo, 2026',
     category: 'Guías',
-    image: 'https://picsum.photos/seed/free/800/400',
+    image: 'https://picsum.photos/seed/free-ai/800/400',
     content: `
-# Cómo convertir audio a texto online gratis en 2026
+# TranscriAI: La mejor opción gratuita para audio a texto en 2026
 
-Existen muchas herramientas para convertir audio a texto, pero no todas son gratuitas o de buena calidad. En TranscriAI ofrecemos una opción potente y accesible.
+Existen muchas herramientas, pero TranscriAI ofrece una combinación única de potencia y accesibilidad.
 
-## Herramientas gratuitas populares
-- **Google Docs:** Su función de dictado por voz es excelente para transcripciones en tiempo real.
-- **TranscriAI (Demo):** Nuestra herramienta permite procesar archivos y enlaces de forma rápida.
-- **YouTube:** Puedes subir un video de forma privada y esperar a que genere los subtítulos automáticos.
+## ¿Por qué elegirnos?
+- **Sin registro obligatorio:** Empieza a transcribir al instante.
+- **Tecnología Gemini:** Usamos los modelos más avanzados de Google.
+- **Privacidad:** No almacenamos tus archivos permanentemente.
 
-## Limitaciones de lo gratuito
-Normalmente, las herramientas gratuitas tienen límites de tiempo o de tamaño de archivo. Para proyectos profesionales, siempre es recomendable usar servicios de IA dedicados.
+## Comparativa con otros
+A diferencia de Google Docs o YouTube, TranscriAI te permite subir archivos locales y obtener resúmenes inteligentes en una sola interfaz limpia y sin anuncios intrusivos.
     `
   },
   {
     id: '5',
-    title: '¿Qué es una transcripción automática y cómo funciona?',
-    excerpt: 'Entiende la tecnología detrás de la magia: desde el procesamiento de ondas sonoras hasta el texto final.',
+    title: 'La tecnología detrás de TranscriAI: ¿Cómo funciona?',
+    excerpt: 'Entiende la tecnología ASR y los modelos de lenguaje que hacen posible TranscriAI.',
     date: '10 de Marzo, 2026',
     category: 'Tecnología',
-    image: 'https://picsum.photos/seed/ai-tech/800/400',
+    image: 'https://picsum.photos/seed/transcriai-tech/800/400',
     content: `
-# ¿Qué es una transcripción automática y cómo funciona?
+# La tecnología detrás de TranscriAI: ¿Cómo funciona?
 
-La transcripción automática utiliza una tecnología llamada ASR (Automatic Speech Recognition). Pero, ¿cómo funciona realmente?
+TranscriAI utiliza una tecnología de vanguardia llamada ASR (Automatic Speech Recognition) potenciada por los modelos **Gemini 3** de Google.
 
-## El proceso paso a paso
-1. **Captura de audio:** El sistema recibe las ondas sonoras.
-2. **Procesamiento de señal:** Se limpia el ruido y se identifican los fonemas.
-3. **Modelado de lenguaje:** La IA predice qué palabras tienen más sentido según el contexto.
-4. **Salida de texto:** El resultado final que ves en pantalla.
+## El flujo de trabajo de TranscriAI
+1. **Captura y Limpieza:** Nuestra IA recibe el audio y aplica filtros para reducir el ruido.
+2. **Análisis de Fonemas:** El sistema identifica los sonidos básicos del habla.
+3. **Contextualización:** A diferencia de otros sistemas, TranscriAI analiza el tema completo para elegir la palabra correcta en caso de homófonos.
+4. **Resumen Inteligente:** Una capa adicional de IA procesa el texto final para extraer conclusiones.
 
-Gracias a modelos como Gemini, la precisión ha pasado del 70% a más del 95% en los últimos años.
+Gracias a esta arquitectura, logramos una precisión superior al 95% en condiciones normales.
     `
   },
   {
     id: '6',
-    title: 'Transcripción para estudiantes: Cómo ahorrar horas de estudio',
-    excerpt: 'Convierte tus grabaciones de clase en apuntes perfectos. La técnica definitiva para mejorar tus notas.',
+    title: 'TranscriAI para estudiantes: Aprueba tus exámenes con IA',
+    excerpt: 'Convierte tus grabaciones de clase en apuntes perfectos y resúmenes de estudio en segundos.',
     date: '08 de Marzo, 2026',
     category: 'Educación',
-    image: 'https://picsum.photos/seed/study/800/400',
+    image: 'https://picsum.photos/seed/student-ai/800/400',
     content: `
-# Transcripción para estudiantes: Cómo ahorrar horas de estudio
+# TranscriAI para estudiantes: Aprueba tus exámenes con IA
 
-Tomar apuntes a mano mientras escuchas al profesor puede ser estresante. La transcripción por IA es la solución perfecta.
+Tomar apuntes a mano es cosa del pasado. Con TranscriAI, puedes concentrarte en entender la clase mientras nosotros escribimos por ti.
 
-## Beneficios para el estudiante
-- **Atención total:** Escucha la clase sin preocuparte por escribir cada palabra.
-- **Búsqueda rápida:** Encuentra conceptos específicos en tus apuntes digitales en segundos.
-- **Resúmenes automáticos:** Usa TranscriAI para obtener los puntos clave de una clase de 2 horas.
+## Cómo usar TranscriAI en la universidad
+- **Graba la clase:** Usa tu móvil para capturar el audio del profesor.
+- **Sube el archivo:** TranscriAI convertirá la hora de clase en texto en menos de un minuto.
+- **Genera el resumen:** Usa nuestra función de resumen para obtener los conceptos clave que entrarán en el examen.
 
-## Consejos de estudio
-Graba la clase (con permiso), transcríbela y luego revisa el texto para añadir tus propias notas y comentarios.
+## Ahorro de tiempo
+Un estudiante promedio ahorra hasta 10 horas semanales de transcripción y organización de apuntes usando TranscriAI.
     `
   },
   {
     id: '7',
-    title: 'El futuro de la inteligencia artificial en el procesamiento de voz',
-    excerpt: '¿Hacia dónde vamos? Traducción en tiempo real, clonación de voz y transcripciones perfectas.',
+    title: 'TranscriAI y el Futuro del Procesamiento de Voz',
+    excerpt: '¿Hacia dónde vamos? Traducción en tiempo real, análisis de sentimientos y transcripciones perfectas con TranscriAI.',
     date: '05 de Marzo, 2026',
     category: 'Tecnología',
-    image: 'https://picsum.photos/seed/future/800/400',
+    image: 'https://picsum.photos/seed/future-ai/800/400',
     content: `
-# El futuro de la inteligencia artificial en el procesamiento de voz
+# TranscriAI y el Futuro del Procesamiento de Voz
 
-La IA no solo está aprendiendo a escribir lo que decimos, sino a entender nuestras emociones y el contexto cultural de nuestras palabras.
+La IA no solo está aprendiendo a escribir lo que decimos, sino a entender nuestras emociones y el contexto cultural de nuestras palabras. En TranscriAI, estamos integrando estas capacidades para ofrecerte más que solo texto.
 
-## Tendencias para los próximos años
-- **Traducción instantánea:** Hablar en español y que te escuchen en japonés en tiempo real.
-- **Detección de emociones:** Sistemas que adaptan su respuesta según tu tono de voz.
-- **Integración total:** Asistentes virtuales que transcriben todas tus reuniones de forma invisible.
+## Tendencias que estamos implementando
+- **Traducción Instantánea:** Pronto podrás transcribir en un idioma y obtener el texto en otro al instante.
+- **Detección de Tono:** Identificar si un hablante está siendo sarcástico, está enojado o entusiasmado.
+- **Integración con Flujos de Trabajo:** Conectar TranscriAI directamente con tus herramientas de gestión de proyectos.
 
-El futuro es apasionante y en TranscriAI estamos a la vanguardia de estos cambios.
+El futuro es apasionante y en TranscriAI estamos a la vanguardia de estos cambios para maximizar tu productividad.
     `
   },
   {
     id: '8',
-    title: 'Cómo usar TranscriAI para mejorar tu SEO',
-    excerpt: 'El contenido en video es genial, pero el texto es lo que Google lee. Aprende a posicionar tu web con transcripciones.',
+    title: 'Domina el SEO de tus Videos con TranscriAI',
+    excerpt: 'El contenido en video es genial, pero el texto es lo que Google lee. Aprende a posicionar tu web usando TranscriAI.',
     date: '03 de Marzo, 2026',
     category: 'Marketing',
-    image: 'https://picsum.photos/seed/seo/800/400',
+    image: 'https://picsum.photos/seed/seo-marketing/800/400',
     content: `
-# Cómo usar TranscriAI para mejorar tu SEO
+# Domina el SEO de tus Videos con TranscriAI
 
-Google todavía no puede "ver" videos de la misma forma que lee texto. Por eso, las transcripciones son tu mejor aliado para el SEO.
+Google todavía no puede "ver" videos de la misma forma que lee texto. Por eso, las transcripciones generadas por TranscriAI son tu mejor aliado para el SEO.
 
-## Estrategia SEO con transcripciones
-1. **Publica la transcripción:** Añádela debajo de tu video en tu blog.
-2. **Crea artículos derivados:** Usa partes de la transcripción para crear nuevos posts.
-3. **Mejora el tiempo de permanencia:** El texto permite que los usuarios consuman el contenido a su ritmo.
+## Estrategia SEO Ganadora
+1. **Publica la Transcripción Completa:** Añádela debajo de tu video en tu blog para que Google indexe cada palabra clave.
+2. **Crea Artículos Derivados:** Usa el texto de TranscriAI para crear hilos de redes sociales o newsletters.
+3. **Mejora la Accesibilidad:** El texto permite que los usuarios consuman el contenido incluso sin audio, mejorando tus métricas de retención.
 
-Una web con texto e imágenes siempre posicionará mejor que una que solo tiene videos incrustados.
+Una web con texto optimizado por TranscriAI siempre posicionará mejor que una que solo tiene videos incrustados.
     `
   },
   {
     id: '9',
-    title: 'Diferencias entre transcripción y subtitulado',
-    excerpt: 'Parecen lo mismo, pero tienen objetivos y procesos técnicos muy diferentes. Te lo explicamos.',
+    title: 'Transcripción vs Subtitulado: ¿Qué necesitas?',
+    excerpt: 'Parecen lo mismo, pero tienen objetivos diferentes. Te explicamos cómo TranscriAI te ayuda en ambos casos.',
     date: '01 de Marzo, 2026',
     category: 'Guías',
-    image: 'https://picsum.photos/seed/subtitles/800/400',
+    image: 'https://picsum.photos/seed/subtitles-guide/800/400',
     content: `
-# Diferencias entre transcripción y subtitulado
+# Transcripción vs Subtitulado: ¿Qué necesitas?
 
-Mucha gente confunde estos términos, pero en el mundo profesional son cosas distintas.
+Mucha gente confunde estos términos, pero en el mundo profesional son cosas distintas. En TranscriAI, nos especializamos en darte la base perfecta para ambos.
 
-## Transcripción
-Es el proceso de convertir audio a texto plano. No suele tener marcas de tiempo y se usa para actas, apuntes o artículos.
+## Transcripción con TranscriAI
+Es el proceso de convertir audio a texto plano. Ideal para actas de reuniones, apuntes de clase o artículos de blog. Nuestra IA limpia el texto para que sea legible de inmediato.
 
 ## Subtitulado
-Es la transcripción adaptada para ser leída mientras se ve el video. Requiere sincronización temporal (timecodes) y límites de caracteres por línea para que sea legible.
+Es la transcripción adaptada para video. Aunque TranscriAI entrega texto fluido, este sirve como el guion perfecto para tus herramientas de edición de video, ahorrándote horas de escritura manual.
 
-En TranscriAI nos enfocamos en la transcripción y el resumen inteligente para maximizar tu productividad.
+En TranscriAI nos enfocamos en la transcripción y el resumen inteligente para que tú te enfoques en crear.
     `
   },
   {
     id: '10',
-    title: 'Cómo transcribir una entrevista periodística en minutos',
-    excerpt: 'Guía para periodistas: de la grabadora al papel sin perder la esencia de la entrevista.',
+    title: 'Periodismo Ágil: Transcribe Entrevistas en Segundos',
+    excerpt: 'Guía para periodistas: de la grabadora al papel sin perder la esencia, gracias a TranscriAI.',
     date: '28 de Febrero, 2026',
     category: 'Periodismo',
-    image: 'https://picsum.photos/seed/journalism/800/400',
+    image: 'https://picsum.photos/seed/journalism-ai/800/400',
     content: `
-# Cómo transcribir una entrevista periodística en minutos
+# Periodismo Ágil: Transcribe Entrevistas en Segundos
 
-Para un periodista, transcribir una entrevista de una hora puede tomar hasta 4 horas de trabajo manual. Con la IA, ese tiempo se reduce a minutos.
+Para un periodista, transcribir una entrevista de una hora puede tomar hasta 4 horas de trabajo manual. Con TranscriAI, ese tiempo se reduce a menos de un minuto.
 
-## Flujo de trabajo eficiente
-1. **Graba con calidad:** Usa una grabadora digital o una app profesional.
-2. **Sube a TranscriAI:** Obtén el texto en bruto rápidamente.
-3. **Edita y pule:** Revisa el texto para asegurar que las citas sean exactas y tengan el tono adecuado.
+## Flujo de Trabajo para Periodistas
+1. **Graba con Calidad:** Usa una grabadora digital o tu smartphone.
+2. **Sube a TranscriAI:** Obtén el texto en bruto y el resumen ejecutivo rápidamente.
+3. **Edita y Pule:** Revisa el texto para asegurar que las citas sean exactas y tengan el tono adecuado.
 
-Ahorrar tiempo en la transcripción te permite dedicar más energía a la investigación y a la redacción de la historia.
+Ahorrar tiempo en la transcripción te permite dedicar más energía a la investigación y a la redacción de grandes historias.
     `
   },
   {
     id: '11',
-    title: 'Transcripción de podcasts: Lleva tu contenido a más personas',
-    excerpt: '¿Tienes un podcast? Aprende cómo las transcripciones pueden ayudarte a llegar a una audiencia global.',
+    title: 'Potencia tu Podcast con Transcripciones de TranscriAI',
+    excerpt: '¿Tienes un podcast? Aprende cómo TranscriAI te ayuda a llegar a una audiencia global y mejorar tu alcance.',
     date: '25 de Febrero, 2026',
     category: 'Podcasting',
-    image: 'https://picsum.photos/seed/podcast/800/400',
+    image: 'https://picsum.photos/seed/podcast-ai/800/400',
     content: `
-# Transcripción de podcasts: Lleva tu contenido a más personas
+# Potencia tu Podcast con Transcripciones de TranscriAI
 
 El podcasting es un formato increíble, pero tiene una barrera: no es fácil de buscar ni de consumir para personas con problemas auditivos.
 
-## Por qué transcribir tu podcast
-- **Accesibilidad:** Haz que tu contenido sea inclusivo.
-- **SEO para audio:** Google indexará el texto de tu podcast, atrayendo tráfico orgánico.
-- **Notas del episodio:** Usa la transcripción para crear notas detalladas y resúmenes.
+## Por qué usar TranscriAI para tu Podcast
+- **Accesibilidad Total:** Haz que tu contenido sea inclusivo para todos.
+- **SEO para Audio:** Google indexará el texto de tu podcast, atrayendo tráfico orgánico a tu sitio web.
+- **Notas del Episodio:** Usa el resumen inteligente de TranscriAI para crear notas detalladas automáticamente.
 
-Con TranscriAI, puedes procesar tus episodios en segundos y mejorar el alcance de tu marca.
+Con TranscriAI, puedes procesar tus episodios en segundos y mejorar drásticamente el alcance de tu marca personal o corporativa.
     `
   },
   {
     id: '12',
-    title: 'Cómo transcribir reuniones de Zoom y Microsoft Teams',
-    excerpt: 'No pierdas ni un detalle de tus reuniones de trabajo. La guía definitiva para la productividad corporativa.',
+    title: 'Productividad en Reuniones: Zoom y Teams con TranscriAI',
+    excerpt: 'No pierdas ni un detalle de tus reuniones de trabajo. La guía definitiva para usar TranscriAI en la oficina.',
     date: '22 de Febrero, 2026',
     category: 'Productividad',
-    image: 'https://picsum.photos/seed/meetings/800/400',
+    image: 'https://picsum.photos/seed/meetings-ai/800/400',
     content: `
-# Cómo transcribir reuniones de Zoom y Microsoft Teams
+# Productividad en Reuniones: Zoom y Teams con TranscriAI
 
-Las reuniones son necesarias, pero a veces se pierde información importante. La transcripción automática es tu mejor aliada.
+Las reuniones son necesarias, pero a veces se pierde información crítica. TranscriAI es tu mejor aliado para documentar cada acuerdo.
 
-## Pasos para una reunión productiva
-1. **Graba la sesión:** Asegúrate de que todos los participantes estén de acuerdo.
-2. **Sube el archivo:** Usa TranscriAI para obtener el texto de la reunión.
-3. **Genera un resumen:** Extrae los acuerdos y tareas pendientes automáticamente.
+## Pasos para una Reunión Productiva
+1. **Graba la Sesión:** Asegúrate de tener el consentimiento de los participantes.
+2. **Sube el Archivo a TranscriAI:** Obtén el texto completo de la reunión.
+3. **Genera un Resumen Ejecutivo:** Extrae los acuerdos, tareas pendientes y responsables automáticamente.
 
-Tener un registro escrito de tus reuniones mejora la transparencia y la ejecución de proyectos.
+Tener un registro escrito de tus reuniones con TranscriAI mejora la transparencia y la ejecución de proyectos en cualquier equipo.
     `
   },
   {
     id: '13',
-    title: 'Seguridad y privacidad en la transcripción por IA',
-    excerpt: '¿Es seguro subir tus audios a la nube? Analizamos cómo protegemos tus datos en TranscriAI.',
+    title: 'Privacidad de Datos: Tu Seguridad en TranscriAI',
+    excerpt: '¿Es seguro subir tus audios a la nube? Te explicamos cómo protegemos tu información en TranscriAI.',
     date: '20 de Febrero, 2026',
     category: 'Seguridad',
-    image: 'https://picsum.photos/seed/security/800/400',
+    image: 'https://picsum.photos/seed/security-ai/800/400',
     content: `
-# Seguridad y privacidad en la transcripción por IA
+# Privacidad de Datos: Tu Seguridad en TranscriAI
 
-La privacidad es nuestra prioridad. Cuando subes un archivo a TranscriAI, nos aseguramos de que tus datos estén protegidos.
+La privacidad es nuestra prioridad absoluta. Cuando utilizas TranscriAI, nos aseguramos de que tus datos estén protegidos bajo los más altos estándares.
 
-## Nuestras medidas de seguridad
-- **Encriptación:** Los datos se transmiten de forma segura.
-- **No almacenamiento:** No guardamos tus archivos más tiempo del necesario para el procesamiento.
-- **IA Ética:** Utilizamos modelos de Google que cumplen con los más altos estándares de seguridad.
+## Compromisos de TranscriAI
+- **Encriptación de Extremo a Extremo:** Tus datos viajan seguros.
+- **No Almacenamiento Permanente:** No guardamos tus archivos de audio una vez procesados.
+- **Infraestructura Segura:** Utilizamos la potencia de Google Cloud para garantizar que tu información no sea accesible por terceros.
 
-Puedes confiar en que tu información confidencial se maneja con el máximo cuidado profesional.
+Puedes confiar en que tu información confidencial se maneja con el máximo cuidado profesional en nuestra plataforma.
     `
   },
   {
     id: '14',
-    title: 'Cómo transcribir videos de Instagram y TikTok',
-    excerpt: 'Aprende a extraer el texto de los videos cortos más populares para reutilizar el contenido.',
+    title: 'Transcribe Reels, TikToks e Instagram con TranscriAI',
+    excerpt: 'Aprende a extraer el texto de los videos cortos más populares para reutilizar tu contenido con TranscriAI.',
     date: '18 de Febrero, 2026',
     category: 'Redes Sociales',
-    image: 'https://picsum.photos/seed/social/800/400',
+    image: 'https://picsum.photos/seed/social-ai/800/400',
     content: `
-# Cómo transcribir videos de Instagram y TikTok
+# Transcribe Reels, TikToks e Instagram con TranscriAI
 
-Los videos cortos dominan las redes sociales, pero a veces necesitas el texto para un subtitulado manual o para un post en otra plataforma.
+Los videos cortos dominan las redes sociales, pero a veces necesitas el texto para subtitular o para crear un post en otra plataforma.
 
-## Proceso de transcripción
-1. **Descarga el video:** Usa herramientas externas para obtener el archivo MP4.
-2. **Sube a TranscriAI:** Procesa el audio del video corto.
-3. **Adapta el contenido:** Usa el texto para crear hilos de Twitter o descripciones de YouTube.
+## Estrategia de Reutilización
+1. **Descarga tu Video:** Obtén el archivo de tu red social favorita.
+2. **Sube a TranscriAI:** Procesa el audio del video corto en segundos.
+3. **Crea Contenido Derivado:** Usa el texto para crear hilos de Twitter, posts de LinkedIn o descripciones optimizadas.
 
-Reutilizar contenido es la clave para crecer en múltiples plataformas sin trabajar el doble.
+Reutilizar contenido es la clave para crecer en múltiples plataformas sin trabajar el doble, y TranscriAI es la herramienta perfecta para lograrlo.
     `
   },
   {
     id: '15',
-    title: 'Guía completa de formatos de audio para transcripción',
-    excerpt: 'MP3, WAV, AAC... ¿Cuál es el mejor formato para obtener resultados precisos?',
+    title: 'Formatos de Audio: ¿Cuál es mejor para TranscriAI?',
+    excerpt: 'MP3, WAV, AAC... Te enseñamos a elegir el formato ideal para obtener transcripciones perfectas.',
     date: '15 de Febrero, 2026',
     category: 'Tecnología',
-    image: 'https://picsum.photos/seed/formats/800/400',
+    image: 'https://picsum.photos/seed/formats-ai/800/400',
     content: `
-# Guía completa de formatos de audio para transcripción
+# Formatos de Audio: ¿Cuál es mejor para TranscriAI?
 
-No todos los archivos de audio son iguales. El formato que elijas puede afectar drásticamente la precisión de la IA.
+No todos los archivos de audio son iguales. El formato que elijas puede afectar la precisión de nuestra inteligencia artificial.
 
-## Formatos recomendados
-- **WAV:** Sin compresión, ideal para máxima precisión.
-- **MP3 (320kbps):** Buen equilibrio entre tamaño y calidad.
-- **FLAC:** Compresión sin pérdida, excelente para archivos largos.
+## Recomendaciones de TranscriAI
+- **WAV:** El estándar de oro. Sin compresión, ideal para máxima precisión.
+- **MP3 (Alta Calidad):** Excelente para archivos largos, siempre que la tasa de bits sea alta.
+- **FLAC:** El equilibrio perfecto entre tamaño y fidelidad.
 
-Evita formatos muy comprimidos o de baja calidad, ya que el ruido digital puede confundir a los algoritmos de transcripción.
+Para obtener los mejores resultados en TranscriAI, evita archivos con mucho ruido de fondo o excesivamente comprimidos que distorsionen la voz.
     `
   }
 ];
@@ -430,18 +456,18 @@ export default function App() {
         contents: {
           parts: [
             { inlineData: { data: base64Data, mimeType: mimeType } },
-            { text: "Analiza este archivo multimedia y genera una transcripción profesional, estructurada y completa. Incluye un resumen ejecutivo al inicio." },
+            { text: "Analiza este archivo multimedia y genera una transcripción profesional, perfectamente ordenada, estructurada y completa. Incluye un resumen ejecutivo al inicio." },
           ],
         },
         config: {
           systemInstruction: `Eres TranscriAI, la IA líder en transcripción profesional y análisis de contenido multimedia.
           
-TU MISIÓN ES ENTREGAR UN DOCUMENTO IMPECABLE:
+TU MISIÓN ES ENTREGAR UN DOCUMENTO IMPECABLE Y PERFECTAMENTE ORDENADO:
 1. **Resumen Ejecutivo:** Comienza con un breve resumen (3-5 líneas) de lo que trata el audio/video.
-2. **Transcripción Estructurada:** Organiza el contenido por temas o secciones usando títulos de Markdown (##, ###).
+2. **Transcripción Estructurada y Ordenada:** Organiza el contenido por temas o secciones usando títulos de Markdown (##, ###). Asegúrate de que el flujo sea lógico y fácil de seguir.
 3. **Identificación de Hablantes:** Usa negritas para los nombres (ej: **Entrevistador:**, **Invitado:**).
 4. **Marcas de Tiempo:** Si es posible, incluye marcas de tiempo aproximadas [00:00] al inicio de cada sección importante.
-5. **Limpieza Profesional:** Elimina muletillas, tartamudeos y ruidos sin perder el sentido original. Corrige la puntuación para que sea fluida.
+5. **Limpieza Profesional:** Elimina muletillas, tartamudeos y ruidos sin perder el sentido original. Corrige la puntuación para que sea fluida y profesional.
 6. **Notas de Contexto:** Para videos, describe acciones clave entre corchetes [ej: El presentador señala una gráfica de ventas].
 
 REGLAS DE ORO:
