@@ -43,3 +43,32 @@
 .prose li {
   @apply my-2;
 }
+
+/* Prose Invert Overrides for Dark Backgrounds */
+.prose-invert h1, .prose-invert h2, .prose-invert h3 {
+  @apply text-white;
+}
+
+.prose-invert p {
+  @apply text-indigo-50;
+}
+
+.prose-invert strong {
+  @apply text-white;
+}
+
+.prose-invert li {
+  @apply text-indigo-50;
+}
+
+.prose-invert ul, .prose-invert ol {
+  @apply text-indigo-50;
+}
+
+.prose-invert blockquote {
+  @apply border-indigo-400 text-indigo-100 italic;
+}
+
+.prose-invert hr {
+  @apply border-indigo-500/30;
+}

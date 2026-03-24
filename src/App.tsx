@@ -26,6 +26,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Markdown from 'react-markdown';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { AdUnit } from './components/AdUnit';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -437,15 +438,32 @@ export default function App() {
     });
   };
 
+  const handleApiError = (err: any) => {
+    console.error("Error de API detectado:", err);
+    let message = err.message || "Error desconocido al procesar la solicitud.";
+    
+    // Detectar error de cuota (429)
+    if (message.includes("429") || message.includes("RESOURCE_EXHAUSTED") || message.includes("quota")) {
+      return "⚠️ Has agotado el límite de uso gratuito de la IA por ahora. Esto sucede porque Google limita las peticiones gratuitas por minuto/día. \n\nSOLUCIÓN: Espera 1 o 2 minutos e inténtalo de nuevo. Si el error persiste, es posible que hayas alcanzado el límite diario.";
+    }
+    
+    // Detectar error de API Key
+    if (message.includes("API_KEY_INVALID") || message.includes("invalid API key")) {
+      return "❌ La clave de API de Gemini no es válida. Por favor, revisa la configuración en 'Settings > Secrets'.";
+    }
+
+    return message;
+  };
+
   const transcribeFile = async () => {
     if (!file) return;
     setState('transcribing');
     setError(null);
     try {
       console.log("Iniciando transcripción de archivo...");
-      let apiKey = process.env.GEMINI_KEY || process.env.GEMINI_API_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
+      let apiKey = process.env.GEMINI_API_KEY || process.env.GEMINI_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
       if (!apiKey || apiKey === 'MY_GEMINI_API_KEY' || apiKey === 'undefined' || apiKey === '') {
-        throw new Error("API Key de Gemini no encontrada. Por favor, ve a 'Settings > Secrets', añade una clave llamada GEMINI_KEY con tu valor, pulsa 'Save' y luego MUY IMPORTANTE: pulsa el botón 'Apply changes' para reiniciar el servidor.");
+        throw new Error("API Key de Gemini no encontrada. Por favor, ve a 'Settings > Secrets', añade una clave llamada GEMINI_API_KEY con tu valor, pulsa 'Save' y luego pulsa 'Apply changes'.");
       }
       const ai = new GoogleGenAI({ apiKey });
       const base64Data = await fileToBase64(file);
@@ -480,7 +498,7 @@ REGLAS DE ORO:
       setResult({ text: response.text, fileName: file.name, fileType: file.type });
       setState('idle');
     } catch (err: any) {
-      setError(err.message || "Error al procesar el archivo.");
+      setError(handleApiError(err));
       setState('error');
     }
   };
@@ -490,9 +508,9 @@ REGLAS DE ORO:
     setState('transcribing');
     setError(null);
     try {
-      const apiKey = process.env.GEMINI_KEY || process.env.GEMINI_API_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
+      const apiKey = process.env.GEMINI_API_KEY || process.env.GEMINI_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
       if (!apiKey || apiKey === 'MY_GEMINI_API_KEY' || apiKey === 'undefined' || apiKey === '') {
-        throw new Error("API Key de Gemini no encontrada. Por favor, ve a 'Settings > Secrets', añade una clave llamada GEMINI_KEY con tu valor, pulsa 'Save' y luego MUY IMPORTANTE: pulsa el botón 'Apply changes' para reiniciar el servidor.");
+        throw new Error("API Key de Gemini no encontrada. Por favor, ve a 'Settings > Secrets', añade una clave llamada GEMINI_API_KEY con tu valor, pulsa 'Save' y luego pulsa 'Apply changes'.");
       }
       const ai = new GoogleGenAI({ apiKey });
       console.log("Enviando a Gemini con URL Context y Google Search...");
@@ -520,7 +538,7 @@ REGLAS:
       setResult({ text: response.text, fileName: link });
       setState('idle');
     } catch (err: any) {
-      setError(err.message || "Error al procesar el enlace.");
+      setError(handleApiError(err));
       setState('error');
     }
   };
@@ -529,7 +547,7 @@ REGLAS:
     if (!result?.text) return;
     setState('summarizing');
     try {
-      const apiKey = process.env.GEMINI_KEY || process.env.GEMINI_API_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
+      const apiKey = process.env.GEMINI_API_KEY || process.env.GEMINI_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
       const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
@@ -547,7 +565,7 @@ TU OBJETIVO:
       setResult(prev => prev ? { ...prev, summary: response.text } : null);
       setState('idle');
     } catch (err: any) {
-      setError("Error al generar el resumen.");
+      setError(handleApiError(err));
       setState('idle');
     }
   };
@@ -687,9 +705,24 @@ TU OBJETIVO:
               )}
 
               {error && (
-                <div className="mt-6 p-4 bg-red-50 border border-red-100 rounded-xl flex items-center gap-3 text-red-600 text-sm">
-                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                  <p>{error}</p>
+                <div className="mt-6 p-6 bg-red-50 border border-red-100 rounded-3xl flex flex-col gap-4 text-red-600">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <p className="font-bold">Ha ocurrido un problema</p>
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">{error}</p>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      if (activeTab === 'file') transcribeFile();
+                      else transcribeLink();
+                    }}
+                    className="w-full bg-red-600 text-white py-3 rounded-xl font-bold hover:bg-red-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-red-200"
+                  >
+                    <Loader2 className={cn("w-4 h-4", state === 'transcribing' && "animate-spin")} />
+                    {state === 'transcribing' ? "Reintentando..." : "Intentar de nuevo ahora"}
+                  </button>
                 </div>
               )}
             </div>
@@ -735,6 +768,12 @@ TU OBJETIVO:
                   <Markdown>{result.text}</Markdown>
                 </div>
               </div>
+
+              {/* Ad Unit: Below Result */}
+              <div className="mt-8">
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest text-center mb-2">Publicidad</p>
+                <AdUnit slot="1234567890" />
+              </div>
             </div>
 
             {/* Right Column: Actions & Summary */}
@@ -760,8 +799,18 @@ TU OBJETIVO:
                     </button>
                   </div>
                 ) : (
-                  <div className="prose prose-invert text-sm leading-relaxed">
-                    <Markdown>{result.summary}</Markdown>
+                  <div className="space-y-4">
+                    <div className="prose prose-invert text-sm leading-relaxed">
+                      <Markdown>{result.summary}</Markdown>
+                    </div>
+                    {error && error.includes("cuota") && (
+                      <button 
+                        onClick={generateSummary}
+                        className="w-full bg-white/10 text-white py-2 rounded-xl text-xs font-bold hover:bg-white/20 transition-all"
+                      >
+                        Reintentar resumen
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
@@ -779,27 +828,35 @@ TU OBJETIVO:
         <p className="text-gray-600 mt-2">Aprende sobre transcripción, IA y productividad.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {BLOG_POSTS.map((post) => (
-          <motion.div 
-            key={post.id}
-            whileHover={{ y: -5 }}
-            className="bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm cursor-pointer"
-            onClick={() => {
-              setSelectedPost(post);
-              setView('article');
-            }}
-          >
-            <img src={post.image} alt={post.title} className="w-full h-48 object-cover" referrerPolicy="no-referrer" />
-            <div className="p-6">
-              <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">{post.category}</span>
-              <h3 className="text-xl font-bold mt-2 leading-tight">{post.title}</h3>
-              <p className="text-gray-500 text-sm mt-3 line-clamp-2">{post.excerpt}</p>
-              <div className="mt-6 flex items-center justify-between">
-                <span className="text-xs text-gray-400">{post.date}</span>
-                <ChevronRight className="w-4 h-4 text-indigo-600" />
+        {BLOG_POSTS.map((post, index) => (
+          <React.Fragment key={post.id}>
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm cursor-pointer"
+              onClick={() => {
+                setSelectedPost(post);
+                setView('article');
+              }}
+            >
+              <img src={post.image} alt={post.title} className="w-full h-48 object-cover" referrerPolicy="no-referrer" />
+              <div className="p-6">
+                <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">{post.category}</span>
+                <h3 className="text-xl font-bold mt-2 leading-tight">{post.title}</h3>
+                <p className="text-gray-500 text-sm mt-3 line-clamp-2">{post.excerpt}</p>
+                <div className="mt-6 flex items-center justify-between">
+                  <span className="text-xs text-gray-400">{post.date}</span>
+                  <ChevronRight className="w-4 h-4 text-indigo-600" />
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+            {/* Insert Ad after 3rd post */}
+            {index === 2 && (
+              <div className="col-span-full py-4">
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest text-center mb-2">Publicidad</p>
+                <AdUnit slot="0987654321" />
+              </div>
+            )}
+          </React.Fragment>
         ))}
       </div>
     </div>
@@ -815,6 +872,12 @@ TU OBJETIVO:
         <article className="prose prose-indigo max-w-none">
           <img src={selectedPost.image} alt={selectedPost.title} className="w-full rounded-2xl mb-8" referrerPolicy="no-referrer" />
           <Markdown>{selectedPost.content}</Markdown>
+          
+          {/* Ad Unit: Bottom of Article */}
+          <div className="mt-12 pt-8 border-t border-gray-100">
+            <p className="text-[10px] text-gray-400 uppercase tracking-widest text-center mb-2">Publicidad</p>
+            <AdUnit slot="1122334455" />
+          </div>
         </article>
       )}
     </div>
