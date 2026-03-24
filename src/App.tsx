@@ -40,7 +40,7 @@ const MODELS = {
 };
 
 type AppState = 'idle' | 'uploading' | 'transcribing' | 'summarizing' | 'error';
-type View = 'home' | 'blog' | 'about' | 'contact' | 'privacy' | 'terms' | 'article';
+type View = 'home' | 'blog' | 'about' | 'contact' | 'privacy' | 'terms' | 'article' | 'cookies';
 
 interface TranscriptionResult {
   text: string;
@@ -406,7 +406,17 @@ export default function App() {
   const [result, setResult] = useState<TranscriptionResult | null>(null);
   const [activeTab, setActiveTab] = useState<'link' | 'file'>('file');
   
+  const [showCookieConsent, setShowCookieConsent] = useState(false);
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Check for cookie consent on mount
+  useEffect(() => {
+    const consent = localStorage.getItem('transcriai_cookie_consent');
+    if (!consent) {
+      setShowCookieConsent(true);
+    }
+  }, []);
 
   // Scroll to top on view change
   useEffect(() => {
@@ -664,7 +674,7 @@ TU OBJETIVO:
                       {file ? file.name : "Haz clic para subir o arrastra un archivo"}
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
-                      MP3, MP4, WAV, MOV (Máx 20MB para demo)
+                      MP3, MP4, WAV, MOV (Máx 50MB)
                     </p>
                   </div>
                   {file && (
@@ -818,6 +828,165 @@ TU OBJETIVO:
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* SEO & Informative Content Section */}
+      {!result && (
+        <div className="mt-24 space-y-24">
+          {/* How it works */}
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="text-center space-y-4">
+              <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto font-bold text-xl">1</div>
+              <h3 className="text-xl font-bold">Sube tu Contenido</h3>
+              <p className="text-gray-500 text-sm">Sube archivos MP3, WAV, MP4 o simplemente pega un enlace de YouTube.</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto font-bold text-xl">2</div>
+              <h3 className="text-xl font-bold">Procesamiento IA</h3>
+              <p className="text-gray-500 text-sm">Nuestra IA avanzada analiza el audio y lo convierte en texto estructurado en segundos.</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto font-bold text-xl">3</div>
+              <h3 className="text-xl font-bold">Obtén tu Resultado</h3>
+              <p className="text-gray-500 text-sm">Copia la transcripción completa o genera un resumen inteligente con un solo clic.</p>
+            </div>
+          </section>
+
+          {/* Benefits */}
+          <section className="bg-white rounded-[3rem] p-12 sm:p-20 border border-gray-100 shadow-sm">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6">¿Por qué elegir TranscriAI?</h2>
+              <p className="text-gray-600">La herramienta de transcripción más completa y accesible del mercado.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+              <div className="flex gap-6">
+                <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex-shrink-0 flex items-center justify-center">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg mb-2">Precisión Superior</h4>
+                  <p className="text-gray-500 text-sm">Utilizamos modelos Gemini de última generación para garantizar una precisión del 95% o superior.</p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex-shrink-0 flex items-center justify-center">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg mb-2">Resúmenes Inteligentes</h4>
+                  <p className="text-gray-500 text-sm">No solo transcribimos, extraemos los puntos clave para que ahorres tiempo de lectura.</p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex-shrink-0 flex items-center justify-center">
+                  <Loader2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg mb-2">Velocidad Increíble</h4>
+                  <p className="text-gray-500 text-sm">Procesamos horas de audio en apenas unos segundos, optimizando tu flujo de trabajo.</p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex-shrink-0 flex items-center justify-center">
+                  <X className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg mb-2">Sin Registro</h4>
+                  <p className="text-gray-500 text-sm">Creemos en la simplicidad. Usa nuestra herramienta sin necesidad de crear una cuenta.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SEO Content / Detailed Explanation */}
+          <section className="prose prose-indigo max-w-none bg-indigo-50/30 rounded-[3rem] p-12 sm:p-20">
+            <h2 className="text-3xl font-bold text-indigo-900">La Revolución de la Transcripción con Inteligencia Artificial</h2>
+            <p className="text-indigo-800/70">
+              En la era digital actual, la cantidad de contenido multimedia que generamos y consumimos es abrumadora. Desde podcasts y seminarios web hasta reuniones de Zoom y videos educativos en YouTube, la información fluye constantemente en formato de audio y video. Sin embargo, el texto sigue siendo la forma más eficiente de buscar, organizar y archivar conocimiento. Aquí es donde entra **TranscriAI**.
+            </p>
+            
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">¿Qué es TranscriAI?</h3>
+            <p className="text-indigo-800/70">
+              TranscriAI es una plataforma avanzada de **Speech-to-Text** (voz a texto) que utiliza los modelos de lenguaje más potentes del mundo para convertir cualquier archivo multimedia en texto estructurado. Nuestra misión es simple: hacer que cada palabra pronunciada sea accesible y útil. Ya seas un estudiante que necesita pasar sus clases a apuntes, un periodista transcribiendo entrevistas, o un profesional que desea documentar sus reuniones, TranscriAI es tu aliado perfecto.
+            </p>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Casos de Uso Comunes</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+              <div>
+                <h4 className="font-bold text-indigo-900">Educación y Estudiantes</h4>
+                <p className="text-sm text-indigo-800/70">Convierte grabaciones de clases magistrales en apuntes editables. Ahorra horas de escritura manual y concéntrate en el aprendizaje activo.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-indigo-900">Periodismo y Medios</h4>
+                <p className="text-sm text-indigo-800/70">Transcribe entrevistas de larga duración en segundos. Nuestra IA identifica cambios de contexto y facilita la redacción de noticias.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-indigo-900">Empresas y Reuniones</h4>
+                <p className="text-sm text-indigo-800/70">Documenta actas de reuniones de Zoom, Teams o Google Meet. Genera resúmenes ejecutivos para que todo el equipo esté alineado.</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-indigo-900">Creadores de Contenido</h4>
+                <p className="text-sm text-indigo-800/70">Transforma tus videos de YouTube o TikTok en artículos de blog o hilos de redes sociales para maximizar tu alcance.</p>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Optimización SEO y Accesibilidad</h3>
+            <p className="text-indigo-800/70">
+              Para los creadores de contenido, la transcripción no es solo una cuestión de comodidad; es una estrategia vital de **SEO (Search Engine Optimization)**. Los motores de búsqueda como Google no pueden "escuchar" un video, pero sí pueden indexar el texto. Al transcribir tus videos con TranscriAI y publicar el texto, estás permitiendo que tu contenido sea descubierto por miles de personas más. Además, mejoras la accesibilidad para personas con discapacidad auditiva, cumpliendo con los estándares modernos de la web inclusiva.
+            </p>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Tecnología de Vanguardia: Gemini 3 Flash</h3>
+            <p className="text-indigo-800/70">
+              A diferencia de las herramientas de transcripción tradicionales que a menudo cometen errores gramaticales o pierden el contexto, TranscriAI utiliza la potencia de **Gemini 3 Flash**. Esta tecnología de Google no solo reconoce palabras, sino que entiende el contexto, la intención y la estructura del lenguaje. Esto nos permite ofrecer transcripciones limpias, eliminando muletillas y ruidos innecesarios, entregando un documento listo para ser compartido o publicado.
+            </p>
+            <p className="text-indigo-800/70">
+              Nuestra arquitectura en la nube permite procesar archivos de gran tamaño con una latencia mínima. Mientras que otros servicios tardan minutos u horas, TranscriAI entrega resultados en una fracción del tiempo, permitiéndote mantener un flujo de trabajo ágil y productivo.
+            </p>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Compromiso con la Calidad y la Innovación</h3>
+            <p className="text-indigo-800/70">
+              En TranscriAI, estamos constantemente actualizando nuestros algoritmos para soportar más idiomas, dialectos y acentos. Entendemos que el lenguaje es vivo y cambiante, por lo que nuestra IA aprende de millones de interacciones para ser cada vez más precisa. Además, nuestra función de **Resumen Inteligente** utiliza procesamiento de lenguaje natural (NLP) avanzado para destilar horas de conversación en los puntos más relevantes, ahorrándote el recurso más valioso: el tiempo.
+            </p>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12">Preguntas Frecuentes</h2>
+            <div className="space-y-6">
+              {[
+                {
+                  q: "¿Es TranscriAI gratuito?",
+                  a: "Sí, actualmente ofrecemos una versión gratuita funcional para que cualquier usuario pueda probar la potencia de nuestra IA sin compromiso."
+                },
+                {
+                  q: "¿Qué formatos de archivo soportan?",
+                  a: "Soportamos los formatos más comunes incluyendo MP3, WAV, AAC para audio, y MP4, MOV, AVI para video. Prácticamente cualquier archivo multimedia moderno es compatible."
+                },
+                {
+                  q: "¿Cómo garantizan mi privacidad?",
+                  a: "Tu privacidad es nuestra prioridad absoluta. No almacenamos tus archivos de forma permanente. Una vez procesada la transcripción, los datos temporales se eliminan de nuestros servidores de forma segura."
+                },
+                {
+                  q: "¿Puedo transcribir videos de YouTube?",
+                  a: "¡Por supuesto! Solo tienes que pegar la URL del video en nuestra pestaña de 'Enlace' y nosotros nos encargamos del resto, analizando el contenido mediante URL Context."
+                },
+                {
+                  q: "¿Cuánto tiempo tarda la transcripción?",
+                  a: "La mayoría de los archivos se procesan en menos de un minuto. La velocidad depende de la duración del audio, pero nuestra IA está optimizada para ser ultra rápida."
+                },
+                {
+                  q: "¿En qué idiomas funciona?",
+                  a: "TranscriAI es multilingüe. Detecta automáticamente el idioma hablado y genera la transcripción en consecuencia. Soporta español, inglés, francés, alemán, italiano y muchos más."
+                }
+              ].map((item, i) => (
+                <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                  <h4 className="font-bold text-indigo-600 mb-2">{item.q}</h4>
+                  <p className="text-gray-500 text-sm">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      )}
     </>
   );
 
@@ -914,6 +1083,38 @@ TU OBJETIVO:
       <p>Utilizamos cookies esenciales para el funcionamiento del sitio y para Google AdSense con el fin de mostrar anuncios relevantes.</p>
       <h2>3. Seguridad</h2>
       <p>Implementamos medidas de seguridad estándar de la industria para proteger tu información durante la transmisión.</p>
+    </div>
+  );
+
+  const renderCookies = () => (
+    <div className="max-w-3xl mx-auto bg-white rounded-3xl p-12 shadow-sm border border-gray-100 prose prose-indigo">
+      <h1>Política de Cookies</h1>
+      <p>Última actualización: 24 de Marzo, 2026</p>
+      <p>En TranscriAI utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación, analizar el tráfico del sitio y mostrar publicidad relevante a través de Google AdSense.</p>
+      
+      <h2>1. ¿Qué son las cookies?</h2>
+      <p>Las cookies son pequeños archivos de texto que los sitios web envían al navegador y que se almacenan en el terminal del usuario (ordenador, teléfono móvil o tablet). Estos archivos permiten que el sitio web recuerde información sobre su visita, lo que puede facilitar su próxima visita y hacer que el sitio le resulte más útil.</p>
+
+      <h2>2. Tipos de cookies que utilizamos</h2>
+      <ul>
+        <li><strong>Cookies técnicas (Necesarias):</strong> Son aquellas que permiten al usuario la navegación a través de una página web y la utilización de las diferentes opciones o servicios que en ella existan, como controlar el tráfico y la comunicación de datos, identificar la sesión o utilizar elementos de seguridad.</li>
+        <li><strong>Cookies de personalización:</strong> Permiten al usuario acceder al servicio con algunas características de carácter general predefinidas en función de una serie de criterios en el terminal del usuario como por ejemplo el idioma o el tipo de navegador.</li>
+        <li><strong>Cookies de análisis:</strong> Son aquellas que, tratadas por nosotros o por terceros, nos permiten cuantificar el número de usuarios y así realizar la medición y análisis estadístico de la utilización que hacen los usuarios del servicio ofertado.</li>
+        <li><strong>Cookies publicitarias (Google AdSense):</strong> Google utiliza cookies para servir anuncios en este sitio web. El uso de cookies de publicidad permite a Google y a sus socios servir anuncios basados en las visitas de los usuarios a sus sitios o a otros sitios en Internet.</li>
+      </ul>
+
+      <h2>3. Cookies de terceros</h2>
+      <p>En particular, este sitio utiliza Google AdSense, un servicio de publicidad proporcionado por Google, Inc. Para ello, Google utiliza cookies que recopilan información, incluida la dirección IP del usuario, que será transmitida, tratada y almacenada por Google en los términos fijados en la web Google.com. Incluyendo la posible transmisión de dicha información a terceros por razones de exigencia legal o cuando dichos terceros procesen la información por cuenta de Google.</p>
+
+      <h2>4. Cómo gestionar y desactivar las cookies</h2>
+      <p>El usuario puede en cualquier momento elegir qué cookies quiere que funcionen en este sitio web mediante la configuración del navegador:</p>
+      <ul>
+        <li><strong>Chrome:</strong> Configuración -&gt; Mostrar opciones avanzadas -&gt; Privacidad -&gt; Configuración de contenido.</li>
+        <li><strong>Firefox:</strong> Herramientas -&gt; Opciones -&gt; Privacidad -&gt; Historial -&gt; Configuración Personalizada.</li>
+        <li><strong>Internet Explorer:</strong> Herramientas -&gt; Opciones de Internet -&gt; Privacidad -&gt; Configuración.</li>
+        <li><strong>Safari:</strong> Preferencias -&gt; Seguridad.</li>
+      </ul>
+      <p>Si bloqueas el uso de cookies en tu navegador es posible que algunos servicios o funcionalidades del sitio web no estén disponibles.</p>
     </div>
   );
 
@@ -1042,6 +1243,7 @@ TU OBJETIVO:
             {view === 'contact' && renderContact()}
             {view === 'privacy' && renderPrivacy()}
             {view === 'terms' && renderTerms()}
+            {view === 'cookies' && renderCookies()}
           </motion.div>
         </AnimatePresence>
       </main>
@@ -1064,7 +1266,7 @@ TU OBJETIVO:
               <ul className="space-y-2 text-sm text-gray-500">
                 <li><button onClick={() => setView('privacy')} className="hover:text-indigo-600">Privacidad</button></li>
                 <li><button onClick={() => setView('terms')} className="hover:text-indigo-600">Términos</button></li>
-                <li><button onClick={() => setView('contact')} className="hover:text-indigo-600">Cookies</button></li>
+                <li><button onClick={() => setView('cookies')} className="hover:text-indigo-600">Cookies</button></li>
               </ul>
             </div>
             <div>
@@ -1073,6 +1275,7 @@ TU OBJETIVO:
                 <li><button onClick={() => setView('home')} className="hover:text-indigo-600">Herramienta</button></li>
                 <li><button onClick={() => setView('blog')} className="hover:text-indigo-600">Blog</button></li>
                 <li><button onClick={() => setView('about')} className="hover:text-indigo-600">Sobre Nosotros</button></li>
+                <li><button onClick={() => setView('contact')} className="hover:text-indigo-600">Contacto</button></li>
               </ul>
             </div>
           </div>
@@ -1104,6 +1307,35 @@ TU OBJETIVO:
           background: #D1D5DB;
         }
       `}</style>
+
+      {/* Cookie Consent Banner */}
+      <AnimatePresence>
+        {showCookieConsent && (
+          <motion.div 
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            className="fixed bottom-6 left-6 right-6 z-[100] max-w-lg mx-auto"
+          >
+            <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-100 flex flex-col sm:flex-row items-center gap-6">
+              <div className="flex-1 text-center sm:text-left">
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Utilizamos cookies para mejorar tu experiencia y mostrar publicidad relevante. Al continuar navegando, aceptas nuestra <button onClick={() => { setView('cookies'); setShowCookieConsent(false); }} className="text-indigo-600 font-bold hover:underline">Política de Cookies</button>.
+                </p>
+              </div>
+              <button 
+                onClick={() => {
+                  localStorage.setItem('transcriai_cookie_consent', 'true');
+                  setShowCookieConsent(false);
+                }}
+                className="bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-indigo-700 transition-all whitespace-nowrap shadow-lg shadow-indigo-200"
+              >
+                Aceptar
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
