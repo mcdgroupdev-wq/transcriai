@@ -26,11 +26,17 @@ import { motion, AnimatePresence } from 'motion/react';
 import Markdown from 'react-markdown';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { createClient } from '@supabase/supabase-js';
 import { AdUnit } from './components/AdUnit';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+// --- Supabase Initialization ---
+const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL;
+const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY;
+const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 // --- Constants & Types ---
 
@@ -946,6 +952,52 @@ TU OBJETIVO:
             <p className="text-indigo-800/70">
               En TranscriAI, estamos constantemente actualizando nuestros algoritmos para soportar más idiomas, dialectos y acentos. Entendemos que el lenguaje es vivo y cambiante, por lo que nuestra IA aprende de millones de interacciones para ser cada vez más precisa. Además, nuestra función de **Resumen Inteligente** utiliza procesamiento de lenguaje natural (NLP) avanzado para destilar horas de conversación en los puntos más relevantes, ahorrándote el recurso más valioso: el tiempo.
             </p>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Beneficios Detallados de la Transcripción Automática</h3>
+            <p className="text-indigo-800/70">
+              La adopción de herramientas de transcripción automática como TranscriAI ofrece una serie de ventajas competitivas tanto para individuos como para organizaciones. A continuación, desglosamos los beneficios más significativos:
+            </p>
+            <ul className="text-indigo-800/70 list-disc pl-6 space-y-2">
+              <li><strong>Ahorro de Tiempo Crítico:</strong> La transcripción manual es una tarea tediosa que puede llevar hasta cinco veces la duración del audio original. Con nuestra IA, este proceso se reduce a segundos, liberando tiempo para tareas de mayor valor estratégico.</li>
+              <li><strong>Mejora de la Accesibilidad:</strong> Al proporcionar una versión textual de tus contenidos en audio y video, haces que tu información sea accesible para personas con deficiencias auditivas o para aquellos que prefieren consumir contenido en entornos donde no pueden activar el sonido.</li>
+              <li><strong>Facilidad de Búsqueda y Recuperación:</strong> El texto es infinitamente más fácil de buscar que el audio. Con una transcripción, puedes encontrar rápidamente una cita específica o un punto de discusión utilizando la función de búsqueda de tu navegador o sistema operativo.</li>
+              <li><strong>Reutilización de Contenido (Content Repurposing):</strong> Una sola entrevista grabada puede convertirse en un artículo de blog, varios posts para redes sociales, un boletín informativo y un guion para un nuevo video. La transcripción es la base de esta estrategia de marketing de contenidos.</li>
+              <li><strong>Documentación y Cumplimiento:</strong> Para muchas industrias, mantener un registro escrito de las comunicaciones es un requisito legal o de cumplimiento. TranscriAI facilita esta tarea de manera automatizada y precisa.</li>
+            </ul>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Caso de Uso: Empresas y Corporaciones</h3>
+            <p className="text-indigo-800/70">
+              En el entorno corporativo, la eficiencia es la clave del éxito. Las empresas modernas generan una cantidad masiva de datos no estructurados en forma de reuniones, llamadas de ventas y sesiones de formación. TranscriAI ayuda a transformar este "ruido" en activos de conocimiento accionables.
+            </p>
+            <p className="text-indigo-800/70">
+              Imagina una reunión de junta directiva de dos horas. Tradicionalmente, alguien tendría que tomar notas meticulosas, lo que a menudo lleva a la pérdida de matices importantes. Con TranscriAI, la reunión se graba y se transcribe íntegramente. Posteriormente, nuestra IA genera un resumen ejecutivo que destaca los acuerdos alcanzados, las tareas asignadas y los plazos establecidos. Esto no solo mejora la transparencia, sino que también garantiza que todos los miembros del equipo estén en la misma página, reduciendo malentendidos y aumentando la productividad global.
+            </p>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Nuestra Tecnología de Inteligencia Artificial</h3>
+            <p className="text-indigo-800/70">
+              El corazón de TranscriAI es una arquitectura de red neuronal profunda diseñada específicamente para el procesamiento del lenguaje natural. Utilizamos modelos de vanguardia como **Gemini 3 Flash**, que han sido entrenados en conjuntos de datos masivos y diversos para comprender no solo las palabras, sino también la semántica y el contexto cultural.
+            </p>
+            <p className="text-indigo-800/70">
+              Nuestra tecnología ASR (Automatic Speech Recognition) emplea técnicas de aprendizaje por refuerzo para mejorar continuamente su precisión. Además, implementamos algoritmos de diarización de hablantes, lo que permite al sistema distinguir entre diferentes voces en una conversación, asignando correctamente cada intervención a su autor. Todo esto se ejecuta en una infraestructura de nube escalable que garantiza que, sin importar cuántos usuarios estén procesando archivos simultáneamente, la experiencia sea siempre fluida y rápida.
+            </p>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Guía de Inicio Rápido: De Audio a Texto en 3 Pasos</h3>
+            <p className="text-indigo-800/70">
+              Comenzar con TranscriAI es extremadamente sencillo. Hemos diseñado la interfaz para que sea intuitiva y no requiera conocimientos técnicos previos. Aquí tienes una guía paso a paso para obtener tu primera transcripción:
+            </p>
+            <ol className="text-indigo-800/70 list-decimal pl-6 space-y-2">
+              <li><strong>Selecciona tu Origen:</strong> Elige entre subir un archivo local desde tu dispositivo o pegar un enlace directo de una plataforma como YouTube. Soportamos una amplia variedad de formatos para tu comodidad.</li>
+              <li><strong>Inicia el Procesamiento:</strong> Una vez seleccionado el archivo o pegado el enlace, haz clic en el botón de transcripción. Nuestra IA comenzará a trabajar de inmediato, analizando cada segundo de tu contenido.</li>
+              <li><strong>Revisa y Exporta:</strong> En cuestión de segundos, verás el texto estructurado en tu pantalla. Puedes copiarlo directamente al portapapeles o generar un resumen inteligente si necesitas una versión condensada.</li>
+            </ol>
+
+            <h3 className="text-2xl font-bold text-indigo-900 mt-8">Nuestra Visión: El Futuro de la Comunicación</h3>
+            <p className="text-indigo-800/70">
+              En TranscriAI, creemos que la tecnología debe servir para eliminar las barreras de la comunicación. Nuestra visión a largo plazo es crear un ecosistema donde cualquier forma de habla, sin importar el idioma o el dialecto, pueda ser instantáneamente comprendida y documentada. Estamos trabajando en integrar funciones de traducción en tiempo real y análisis de sentimientos para proporcionar una capa de comprensión aún más profunda a tus transcripciones.
+            </p>
+            <p className="text-indigo-800/70">
+              La inteligencia artificial no es solo una herramienta de automatización; es un catalizador para la creatividad y la colaboración humana. Al encargarnos de las tareas repetitivas y laboriosas como la transcripción, permitimos que las personas se concentren en lo que realmente importa: generar ideas, contar historias y construir conexiones significativas. Únete a nosotros en este viaje hacia un futuro más conectado y eficiente.
+            </p>
           </section>
 
           {/* FAQ Section */}
@@ -1130,29 +1182,113 @@ TU OBJETIVO:
     </div>
   );
 
-  const renderContact = () => (
-    <div className="max-w-xl mx-auto bg-white rounded-3xl p-12 shadow-sm border border-gray-100">
-      <h2 className="text-3xl font-bold mb-6">Contáctanos</h2>
-      <p className="text-gray-600 mb-8">¿Tienes alguna duda o sugerencia? Estamos aquí para escucharte.</p>
-      <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-        <div>
-          <label className="block text-sm font-bold mb-1">Nombre</label>
-          <input type="text" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl" placeholder="Tu nombre" />
-        </div>
-        <div>
-          <label className="block text-sm font-bold mb-1">Email</label>
-          <input type="email" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl" placeholder="tu@email.com" />
-        </div>
-        <div>
-          <label className="block text-sm font-bold mb-1">Mensaje</label>
-          <textarea className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl h-32" placeholder="¿En qué podemos ayudarte?"></textarea>
-        </div>
-        <button className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all">
-          Enviar Mensaje
-        </button>
-      </form>
-    </div>
-  );
+  const renderContact = () => {
+    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!supabase) {
+        setError("Supabase no está configurado correctamente.");
+        setStatus('error');
+        return;
+      }
+
+      setStatus('submitting');
+      try {
+        const { error: sbError } = await supabase
+          .from('contacts')
+          .insert([
+            { 
+              name: formData.name, 
+              email: formData.email, 
+              message: formData.message,
+              created_at: new Date().toISOString()
+            }
+          ]);
+
+        if (sbError) throw sbError;
+        
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } catch (err: any) {
+        console.error("Error al enviar mensaje:", err);
+        setError("No se pudo enviar el mensaje. Por favor, inténtalo de nuevo.");
+        setStatus('error');
+      }
+    };
+
+    return (
+      <div className="max-w-xl mx-auto bg-white rounded-3xl p-12 shadow-sm border border-gray-100">
+        <h2 className="text-3xl font-bold mb-6">Contáctanos</h2>
+        <p className="text-gray-600 mb-8">¿Tienes alguna duda o sugerencia? Estamos aquí para escucharte.</p>
+        
+        {status === 'success' ? (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-emerald-50 border border-emerald-100 p-8 rounded-2xl text-center"
+          >
+            <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-emerald-900 mb-2">¡Mensaje Enviado!</h3>
+            <p className="text-emerald-700 text-sm mb-6">Gracias por contactarnos. Te responderemos lo antes posible.</p>
+            <button 
+              onClick={() => setStatus('idle')}
+              className="text-emerald-600 font-bold hover:underline"
+            >
+              Enviar otro mensaje
+            </button>
+          </motion.div>
+        ) : (
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div>
+              <label className="block text-sm font-bold mb-1">Nombre</label>
+              <input 
+                type="text" 
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" 
+                placeholder="Tu nombre" 
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold mb-1">Email</label>
+              <input 
+                type="email" 
+                required
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" 
+                placeholder="tu@email.com" 
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold mb-1">Mensaje</label>
+              <textarea 
+                required
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl h-32 focus:ring-2 focus:ring-indigo-500 outline-none" 
+                placeholder="¿En qué podemos ayudarte?"
+              ></textarea>
+            </div>
+            <button 
+              type="submit"
+              disabled={status === 'submitting'}
+              className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {status === 'submitting' ? <Loader2 className="w-5 h-5 animate-spin" /> : null}
+              {status === 'submitting' ? "Enviando..." : "Enviar Mensaje"}
+            </button>
+            {status === 'error' && (
+              <p className="text-red-500 text-xs text-center mt-2">Hubo un error al enviar el mensaje. Verifica la configuración de Supabase.</p>
+            )}
+          </form>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] font-sans selection:bg-indigo-100 flex flex-col">
